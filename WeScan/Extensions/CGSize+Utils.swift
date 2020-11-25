@@ -6,6 +6,7 @@
 //  Copyright © 2019 WeTransfer. All rights reserved.
 //
 
+import CoreGraphics
 import Foundation
 
 extension CGSize {

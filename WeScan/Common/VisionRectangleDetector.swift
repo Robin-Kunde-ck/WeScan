@@ -6,8 +6,9 @@
 //  Copyright © 2018 WeTransfer. All rights reserved.
 //
 
-import Vision
+import CoreImage
 import Foundation
+import Vision
 
 /// Class used to detect rectangles from an image.
 @available(iOS 11.0, *)

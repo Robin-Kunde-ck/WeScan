@@ -6,8 +6,8 @@
 //  Copyright © 2018 WeTransfer. All rights reserved.
 //
 
-import UIKit
 import AVFoundation
+import UIKit
 
 /// A set of methods that your delegate object must implement to interact with the image scanner interface.
 public protocol ImageScannerControllerDelegate: NSObjectProtocol {

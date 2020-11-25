@@ -6,8 +6,9 @@
 //  Copyright © 2018 WeTransfer. All rights reserved.
 //
 
-import Foundation
 import AVFoundation
+import CoreImage
+import Foundation
 
 /// Class used to detect rectangles from an image.
 enum CIRectangleDetector {

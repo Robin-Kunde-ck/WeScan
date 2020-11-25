@@ -6,9 +6,10 @@
 //  Copyright © 2018 WeTransfer. All rights reserved.
 //
 
-import Foundation
-import CoreMotion
 import AVFoundation
+import CoreMotion
+import Foundation
+import UIKit
 
 /// A set of functions that inform the delegate object of the state of the detection.
 protocol RectangleDetectionDelegateProtocol: NSObjectProtocol {

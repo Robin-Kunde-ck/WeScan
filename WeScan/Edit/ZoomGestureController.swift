@@ -6,8 +6,9 @@
 //  Copyright © 2018 WeTransfer. All rights reserved.
 //
 
-import Foundation
 import AVFoundation
+import Foundation
+import UIKit
 
 final class ZoomGestureController {
     

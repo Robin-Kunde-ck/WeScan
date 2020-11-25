@@ -6,8 +6,9 @@
 //  Copyright © 2018 WeTransfer. All rights reserved.
 //
 
-import Foundation
 import AVFoundation
+import Foundation
+import UIKit
 import Vision
 
 /// A data structure representing a quadrilateral and its position. This class exists to bypass the fact that CIRectangleFeature is read-only.
