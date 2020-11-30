@@ -5,10 +5,10 @@ let package = Package(
     name: "WeScan",
     defaultLocalization: LanguageTag("en"),
     platforms: [
-        .iOS(.v10),
+        .iOS(.v10)
     ],
     products: [
-        .library(name: "WeScan", targets: ["WeScan"]),
+        .library(name: "WeScan", targets: ["WeScan"])
     ],
     targets: [
         .target(
@@ -18,7 +18,7 @@ let package = Package(
             resources: [
                 .process("Assets")
             ]
-        ),
+        )
     ],
     swiftLanguageVersions: [.v5]
 )
