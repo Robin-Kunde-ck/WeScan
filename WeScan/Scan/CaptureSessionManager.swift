@@ -44,6 +44,12 @@ protocol RectangleDetectionDelegateProtocol: NSObjectProtocol {
 
 /// The CaptureSessionManager is responsible for setting up and managing the AVCaptureSession and the functions related to capturing.
 final class CaptureSessionManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
+
+    public var useAspectFitPreviewContentMode = false {
+        didSet {
+            videoPreviewLayer.videoGravity = useAspectFitPreviewContentMode ? .resizeAspect : .resizeAspectFill
+        }
+    }
     
     private let videoPreviewLayer: AVCaptureVideoPreviewLayer
     private let captureSession = AVCaptureSession()
@@ -120,7 +126,7 @@ final class CaptureSessionManager: NSObject, AVCaptureVideoDataOutputSampleBuffe
         captureSession.addOutput(videoOutput)
         
         videoPreviewLayer.session = captureSession
-        videoPreviewLayer.videoGravity = .resizeAspectFill
+        videoPreviewLayer.videoGravity = useAspectFitPreviewContentMode ? .resizeAspect : .resizeAspectFill
         
         videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "video_ouput_queue"))
     }

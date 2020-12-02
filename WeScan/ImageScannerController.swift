@@ -44,6 +44,12 @@ public final class ImageScannerController: UINavigationController {
     
     /// The object that acts as the delegate of the `ImageScannerController`.
     public weak var imageScannerDelegate: ImageScannerControllerDelegate?
+
+    public var useAspectFitPreviewContentMode = false {
+        didSet {
+            resetScanner()
+        }
+    }
     
     // MARK: - Life Cycle
     
@@ -61,7 +67,9 @@ public final class ImageScannerController: UINavigationController {
     }
     
     public required init(image: UIImage? = nil, delegate: ImageScannerControllerDelegate? = nil) {
-        super.init(rootViewController: ScannerViewController())
+        let svc = ScannerViewController()
+        svc.useAspectFitPreviewContentMode = useAspectFitPreviewContentMode
+        super.init(rootViewController: svc)
         
         self.imageScannerDelegate = delegate
         
@@ -125,7 +133,9 @@ public final class ImageScannerController: UINavigationController {
     }
     
     public func resetScanner() {
-        setViewControllers([ScannerViewController()], animated: true)
+        let svc = ScannerViewController()
+        svc.useAspectFitPreviewContentMode = useAspectFitPreviewContentMode
+        setViewControllers([svc], animated: true)
     }
     
     private func setupConstraints() {

@@ -11,6 +11,12 @@ import AVFoundation
 
 /// The `ScannerViewController` offers an interface to give feedback to the user regarding quadrilaterals that are detected. It also gives the user the opportunity to capture an image with a detected rectangle.
 public final class ScannerViewController: UIViewController {
+
+    public var useAspectFitPreviewContentMode = false {
+        didSet {
+            captureSessionManager?.useAspectFitPreviewContentMode = useAspectFitPreviewContentMode
+        }
+    }
     
     private var captureSessionManager: CaptureSessionManager?
     private let videoPreviewLayer = AVCaptureVideoPreviewLayer()
@@ -78,6 +84,7 @@ public final class ScannerViewController: UIViewController {
         setupConstraints()
         
         captureSessionManager = CaptureSessionManager(videoPreviewLayer: videoPreviewLayer, delegate: self)
+        captureSessionManager?.useAspectFitPreviewContentMode = useAspectFitPreviewContentMode
         
         originalBarStyle = navigationController?.navigationBar.barStyle
         
@@ -118,7 +125,7 @@ public final class ScannerViewController: UIViewController {
     // MARK: - Setups
     
     private func setupViews() {
-        view.backgroundColor = .darkGray
+        view.backgroundColor = .black
         view.layer.addSublayer(videoPreviewLayer)
         quadView.translatesAutoresizingMaskIntoConstraints = false
         quadView.editable = false
@@ -304,8 +311,10 @@ extension ScannerViewController: RectangleDetectionDelegateProtocol {
         }
         
         let portraitImageSize = CGSize(width: imageSize.height, height: imageSize.width)
-        
-        let scaleTransform = CGAffineTransform.scaleTransform(forSize: portraitImageSize, aspectFillInSize: quadView.bounds.size)
+
+        let scaleTransform = useAspectFitPreviewContentMode
+            ? CGAffineTransform.scaleTransform(forSize: portraitImageSize, aspectInSize: quadView.bounds.size)
+            : CGAffineTransform.scaleTransform(forSize: portraitImageSize, aspectFillInSize: quadView.bounds.size)
         let scaledImageSize = imageSize.applying(scaleTransform)
         
         let rotationTransform = CGAffineTransform(rotationAngle: CGFloat.pi / 2.0)

@@ -124,6 +124,7 @@ final class HomeViewController: UIViewController {
     func scanImage() {
         let scannerViewController = ImageScannerController(delegate: self)
         scannerViewController.modalPresentationStyle = .fullScreen
+        scannerViewController.useAspectFitPreviewContentMode = true
         
         if #available(iOS 13.0, *) {
             scannerViewController.navigationBar.tintColor = .label
